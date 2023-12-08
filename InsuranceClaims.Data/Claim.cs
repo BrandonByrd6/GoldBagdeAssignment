@@ -2,6 +2,11 @@
 public abstract class Claim
 {
 
+    public Claim()
+    {
+        Description = "";
+    }
+
     public Claim(string description, double claimAmount, DateTime dateOfIncident, DateTime dateOfClaim)
     {
         Description = description;
@@ -19,12 +24,7 @@ public abstract class Claim
     {
         get
         {
-            int result = DateTime.Compare(DateOfIncident, DateOfClaim);
-            if (result < 0)
-            {
-                return false;
-            }
-            return (result > 30) ? false : true;
+           return (DateOfClaim - DateOfIncident).TotalDays < 30;
         }
     }
 }
